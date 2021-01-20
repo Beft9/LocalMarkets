@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <title>Sign in</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+        <!--link rel="stylesheet" href="{{ url_for('static', filename='css/sing_in.css') }}"> 
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/mymovies.css') }}"--> 
+        <style>
+
+
+div.sign-in-div1{
+    background-color: rgb(52, 79, 92);
+    display: inline-block;
+    flex: 30%;
+    text-align: center;
+}
+form.my-signup{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    height: 50%;
+}   
+label{
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(158, 158, 158);
+    font-size: 15px;
+    padding: 5px;
+}
+
+input.input{
+    display: block;
+    border-color: rgb(91, 132, 185);
+    border-width: 2px;
+    padding: 8px;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    float: left;
+}
+a.button-cancel{
+    margin-right: 5px;
+    display: inline-block;
+    background-color: rgb(175, 11, 11);
+    text-decoration: none;
+    text-emphasis: none;
+    /*font-family: Arial, Helvetica, sans-serif;*/
+    width: 130px;
+}
+
+input.button1, a.button-cancel{
+    font-size: 14px;
+    padding: auto;
+    border: gray 2px;
+    color: white;
+}
+input.button1{
+    width: 45%;
+    background-color: green;
+}
+        </style>
+    </head>
+    <body style="margin: 0px;">
+        <div style="display: flex; background-color:rgb(52, 79, 92);">
+            <div style="flex: 65%;">
+                <img src="{{url_for('static', filename='2593043.jpg')}}" style="width: 100%; height: 100%;">
+            </div>
+            <div class="sign-in-div1">
+                <div>
+                    <img src="{{url_for('static', filename='anonymous.png')}}" style="width: 35%; margin: 10px auto; margin-bottom: 0px; ">
+                </div>
+                <div style="width: 320px; text-align: center; margin: auto">
+                <form class="my-signup" action="{{ url_for('signing') }}" method="post">
+                    <div style="display: inline-flex;">
+                        <div style="width: 40%; ">
+                            <label for="fname" >First name:<br/>
+                                <input class="input" style="margin: 0px;" type="text" placeholder="Enter name" id="fname" name="fname" required>
+                            </label>
+                        </div>
+                        <div style="width: 55%; margin-left: 5%; float: left;">
+                            <label for="Lname">Last name:<br/>
+                                <input class="input" type="text" placeholder="Enter surname" id="Lname" name="lname" required><br><br>
+                            </label>
+                        </div>
+                    </div>
+                    <label for="username">Username:
+                        <input class="input" type="text" placeholder="Enter username" id="username" name="username" required><br><br>
+                    </label>
+                    <label for="email">E-mail Address:
+                        <input class="input"  type="text" placeholder="Enter Email" id="email" name="email" required><br><br>
+                    </label>
+                    <label for="password">Password:
+                        <input class="input" type="text" placeholder="Enter a password" id="password" name="password" required><br><br>
+                    </label>
+                    <label for="address">Address:
+                        <input class="input" type="text" placeholder="Enter your address" id="address" name="address" required><br><br>
+                    </label>
+                    <div class="container1" style="margin-top: 40px;">
+                        <a href="http://localhost:8080/" class="button button-cancel">Back to Home</a>
+                        <input class="button button1" type="submit" value="Sign up">
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
+    </body>
+</html>
+

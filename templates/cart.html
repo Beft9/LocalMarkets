@@ -1,0 +1,24 @@
+{% extends "signed.html"  %}
+{% block content %}
+
+<div style="width: 55%; float: left;">
+    <h1 style="margin: 10px 10px 10px 50px; font-size: 35px; float: left;">Your Cart</h1> 
+    <button class="category" style="width: 160px; margin: 14px; float: right;" type="submit">Buy</button>
+  </div>
+
+  <div style="width: 55%; float: left;">
+    {% for product in product_list %}
+    <a href="{{url_for('product_page', username=username, product_id=product.id)}}">
+    <div class="card" style="width: 250px; text-align: center; margin: 10px; float: left;">
+      <img src="{{url_for('static', filename='{}.jpg'.format(product.category))}}" alt="{{product.name}}" style="width:300px; height: 200px; float: left; background: url(https://i.imgur.com/yZfkl8E.jpg) no-repeat scroll 0 0;"/>
+      <h1 class="subtitle is-1" style="margin: 0px; padding: 0px; font-size: 30px;">{{product.name}}</h1>
+      <p class="price">{{product.price}} TRY</p>
+      <p>{{product.brand}}</p>
+      <p>{{product.model}}</p>
+      <p style="margin-bottom: 15px ;">Quantity: {{product.quantity}}</p>
+    </div>
+    </a>
+    {% endfor %}
+</div>
+
+{% endblock %}

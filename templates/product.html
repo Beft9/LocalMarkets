@@ -1,0 +1,25 @@
+{% extends "signed.html"  %}
+
+{% block content %}
+<div style="width: 50%; text-align: center; float: left;"><h1 class="subtitle is-1"> {{product.name}}</h1>
+<div class="card">
+    <img src="{{url_for('static', filename='{}.jpg'.format(product.category))}}" alt="image" style="width:300px; float: left; margin: 10px; background: url(https://i.imgur.com/yZfkl8E.jpg) no-repeat scroll 0 0;">
+    <h1 class="subtitle is-1">{{product.name}}</h1>
+    <p class="price">{{product.price}} TRY</p>
+    <p>{{product.brand}}</p>
+    <p>{{product.model}}</p>
+    <p>Quantity: {{product.quantity}}</p><br/><br/>
+    {% if in_cart %}
+    <p><form  action="{{ url_for('deleting_from_cart', username=username, product_id=product.id) }}" method="post">
+      <button type="submit" class="category" style="width: 190px;">Delete from Cart</button></p>
+    </form>
+    {% else %}
+    <p><form  action="{{ url_for('AddingtoCart', username=username, product_id=product.id) }}" method="post">
+      <button type="submit" class="category" style="width: 150px;">Add to Cart</button></p>
+    </form>
+    {% endif %}
+  </div>
+</div>
+
+    
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "layout.html"  %}
+{% block title %} Home {% endblock  %}
+
+{% block login %} 
+<a class="sites-routers" href="/">Home</a>
+<a class="sites-routers" href="/sign_up">Sign Up</a>
+<button onclick="document.getElementById('id01').style.display='block'" class="sites-routers">Login</button>
+{% endblock %}
+
+
+{% block loginPopup %}     
+<!--open box login-->
+<div id="id01" class="modal">
+  
+    <form class="modal-content animate"  action="{{ url_for('logging') }}" method="post">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+        <img src="{{url_for('static', filename='anonymous.png')}}" style="width: 35%; margin-top:30px; margin-left: auto; margin-right: auto;">
+      </div>
+  
+      <div class="container">
+        <label for="uname"><b>Username</b></label>
+        <div class="field">
+            <p class="control has-icons-left has-icons-right">
+              <input class="input" type="text" placeholder="Username" name="Username">
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+              <span class="icon is-small is-right">
+                <i class="fas fa-check"></i>
+              </span>
+            </p>
+          </div>
+  
+        <label for="psw"><b>Password</b></label>
+        <div class="field">
+            <p class="control has-icons-left">
+              <input class="input" type="password" placeholder="Password" name="Password">
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </p>
+        </div>
+        <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+          </label><br>
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="button is-success" style="width: 49%; background-color: #f44336;">Cancel</button>
+        <button type="submit" class="button is-success" style="width: 49%;">Login</button>
+      </div>
+  
+      
+        <!--span class="psw">Forgot <a href="#">password?</a></span-->
+      
+    </form>
+  </div>
+<!--login openbox end-->
+{% endblock %}
+
+
+{% block content %}
+
+        <div class="container" style="width: 55%; float: left; text-align: center; ">
+            <h1 style="font-size: 40px; margin: auto;">Welcome to Online Local Markets</h1><br/><br/><br/>
+            <p class="subtitle" style="font-size: 25px;"> To start to trade, Sign up!</p>
+        </div>
+
+
+
+{% endblock %}

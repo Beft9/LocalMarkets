@@ -1,0 +1,151 @@
+{% extends "signed.html"  %}
+{% block content %}
+
+{% if company != None %}
+<div style="width: 55%; float: left;">
+  <h1 style="margin: 10px 10px 10px 50px; font-size: 35px; float: left;">Your company products</h1> 
+  <button class="category" style="width: 160px; margin: 14px; float: right;" onclick="document.getElementById('product').style.display='block'">Add Product</button>
+</div>
+
+
+<!--add product popup-->
+<div id="product" class="modal">
+
+  <form class="modal-content animate"  action="{{ url_for('adding_product', username=username) }}" method="post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('product').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="{{url_for('static', filename='anonymous.png')}}" style="width: 35%; margin-top:30px; margin-left: auto; margin-right: auto;">
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Product name</b></label>
+      <div class="field">
+          <p class="control has-icons-left has-icons-right">
+            <input class="input" type="text" placeholder="Enter Product name" name="pname">
+          </p>
+        </div>
+        <label for="uname"><b>Product Brand</b></label>
+        <div class="field">
+          <p class="control has-icons-left has-icons-right">
+            <input class="input" type="text" placeholder="Enter Product Brand" name="brand">
+          </p>
+        </div>
+        <label for="uname"><b>Product Model</b></label>
+        <div class="field">
+          <p class="control has-icons-left has-icons-right">
+            <input class="input" type="text" placeholder="Enter Product Model" name="model">
+          </p>
+        </div>
+        <label for="uname"><b>Quantity</b></label>
+        <div class="field">
+          <p class="control has-icons-left has-icons-right">
+            <input class="input" type="text" placeholder="Enter Quantity" name="quantity">
+          </p>
+        </div>
+      <label for="psw"><b>Price </b></label>
+      <div class="field">
+          <p class="control has-icons-left">
+            <input class="input" type="text" placeholder="Enter Price" name="price">
+            </span>
+          </p>
+      </div><div style="margin: 20px;">
+    <label for="cars" style="float: left; padding: 6px 20px;">Choose Category:</label>
+      <select name="category" id="cars" class="button">
+        <optgroup label="Sport">
+          <option value="Football">Football</option>
+          <option value="Basketball">Basketball</option>
+          <option value="Volleyball">Volleyball</option>
+          <option value="Skiing">Skiing</option>
+        </optgroup>
+        <optgroup label="Electronics">
+          <option value="Computer">Computer</option>
+          <option value="Phone">Phone</option>
+        </optgroup>
+        <optgroup label="Supermarket">
+          <option value="Supermarket">Supermarket</option>
+        </optgroup>
+        <optgroup label="Clothing">
+          <option value="Shoes">Shoes</option>
+          <option value="TShirt">TShirt</option>
+          <option value="Jacket">Jacket</option>
+        </optgroup>
+        <optgroup label="Stationary">
+          <option value="Book">Book</option>
+          <option value="Pencil">Pencil</option>
+        </optgroup>
+      </select>
+    </div>
+
+      <button type="button" onclick="document.getElementById('product').style.display='none'" class="button is-success" style="width: 49%; background-color: #f44336;">Cancel</button>
+      <button type="submit" class="button is-success" style="width: 49%;">Add Product</button>
+    </div>
+
+    
+      <!--span class="psw">Forgot <a href="#">password?</a></span-->
+    
+  </form>
+</div>
+<!--add product openbox end-->
+
+{% else %}
+<div style="width: 55%; float: left; text-align: center; background-color: rgba(100, 148, 237, 0.123);">
+  <h1 style="margin: 10px 10px 10px 40px; font-size: 30px;">You didn't create a company yet</h1><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+  <button style="width: 250px; margin: 20px 0px;" onclick="document.getElementById('id02').style.display='block'" class="sites-routers">Create Company</button>
+</div>
+
+
+<!--popup-->
+<div id="id02" class="modal">
+
+  <form class="modal-content animate"  action="{{ url_for('company_creating', username=username) }}" method="post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src="{{url_for('static', filename='anonymous.png')}}" style="width: 35%; margin-top:30px; margin-left: auto; margin-right: auto;">
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Company name</b></label>
+      <div class="field">
+          <p class="control has-icons-left has-icons-right">
+            <input class="input" type="text" placeholder="Company name" name="company">
+
+          </p>
+        </div>
+
+      <label for="psw"><b>Company location</b></label>
+      <div class="field">
+          <p class="control has-icons-left">
+            <input class="input" type="text" placeholder="Location" name="location">
+            </span>
+          </p>
+      </div><br>
+      <button type="button" onclick="document.getElementById('id02').style.display='none'" class="button is-success" style="width: 49%; background-color: #f44336;">Cancel</button>
+      <button type="submit" class="button is-success" style="width: 49%;">Create Company</button>
+    </div>
+
+    
+      <!--span class="psw">Forgot <a href="#">password?</a></span-->
+    
+  </form>
+</div>
+<!--company openbox end-->
+{% endif %}
+
+
+<div style="width: 55%; float: left;">
+{% for product in product_list %}
+<a href="{{url_for('product_page', username=username, product_id=product.id)}}">
+<div class="card" style="width: 250px; text-align: center; margin: 10px; float: left;">
+  <img src="{{url_for('static', filename='{}.jpg'.format(product.category))}}" alt="{{product.name}}" style="width:300px; height: 200px; float: left; background: url(https://i.imgur.com/yZfkl8E.jpg) no-repeat scroll 0 0;"/>
+  <h1 class="subtitle is-1" style="margin: 0px; padding: 0px; font-size: 30px;">{{product.name}}</h1>
+  <p class="price">{{product.price}} TRY</p>
+  <p>{{product.brand}}</p>
+  <p>{{product.model}}</p>
+  <p style="margin-bottom: 15px ;">Quantity: {{product.quantity}}</p>
+</div>
+</a>
+{% endfor %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,48 @@
+
+
+
+div.sign-in-div{
+    background-color: rgb(52, 79, 92);
+    width: 400px;
+    height: 700px;
+    margin-left: 120px;
+    display: block;
+    text-align: center;
+}
+form{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+label{
+    text-align: left;
+    color: rgb(29, 29, 29);
+    font-size: 20px;
+    margin-left: 0px;
+    margin-top: 100px;
+    padding: 5px;
+}
+label.lastname{
+    margin-left: 67px;
+}
+input{
+    background-color: rgb(91, 132, 185);
+    padding: 8px;
+    width: 300px;
+}
+input.name{
+    width: 120px;
+}
+input.surname{
+    width: 145px;
+    margin-left: 30px;
+}
+input.button0{
+    margin-right: 10px;
+    display: inline-block;
+    background-color: rgb(175, 11, 11);
+}
+input.button1, input.button0{
+    width: 143px;
+}

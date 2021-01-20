@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <title> {% block title %} {% endblock %} </title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/layout.css') }}"> 
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}"> 
+      {% block style %} {% endblock %}
+    </head>
+    <body class="mybody">
+          <div style="background-color: rgb(91, 132, 185); height: auto; padding: 0px 10px;">
+            <div style="width: 35%; float: left;">
+                <h2 class="MainTitle">Online Local Markets</h2>
+            </div>
+
+        
+            <from>
+            <div class="control" style="display: inline-block; width: 30%; text-align: center;">
+              <input class="input is-info"  type="text" style="margin: 10px 0px" placeholder="Search">
+           </div>
+          </from>
+           
+            
+            <div class="rightDiv">
+                
+                {% block login %} {% endblock %}
+            </div>
+          </div>
+          {% block loginPopup %}
+                
+           {% endblock %}
+             
+
+           <!-- Categories Start-->
+           <div class="categories">
+             <h1 style="margin-left: 20px; font-size: 30px; color: black;">Categories</h1>
+             <form action="{{ url_for('categorize')}}" method="post">
+            <ul class="menu">
+                <li class="menu"> <button onclick="document.getElementById('row1').style.display='block'" type="button" class="category">Sport</button> 
+                  <ul id="row1" style="display: none; padding-left: 40px;">
+                    <li><button name="category" value="Football" type="submit" style="background-color: rgba(206, 74, 74, 0.959);" class="category">Football</button></li>
+                    <li><button name="category" value="Basketball" type="submit" style="background-color: rgba(206, 74, 74, 0.959);"  class="category">Basketball</button></li>
+                    <li><button name="category" value="Volleyball" type="submit" style="background-color: rgba(206, 74, 74, 0.959);"  class="category">Volleyball</button></li>
+                    <li><button name="category" value="Skiing" type="submit" style="background-color: rgba(206, 74, 74, 0.959);"  class="category">Skiing</button></li></ul></li>
+                <li class="menu"> <button onclick="document.getElementById('row2').style.display='block'" type="button" class="category">Electronics</button> 
+                  <ul id="row2" style="display: none; padding-left: 40px;">
+                    <li><button name="category" value="Computer" type="submit" style="background-color: rgba(206, 74, 74, 0.959);"  class="category">Computer</button></li>
+                    <li><button name="category" value="Phone" type="submit" style="background-color: rgba(206, 74, 74, 0.959);"  class="category">Phone</button></li></ul></li>
+                <li class="menu"> <button onclick="document.getElementById('row3').style.display='block'" type="button" class="category">Supermarket</button> 
+                  <ul id="row3" style="display: none; padding-left: 40px;">
+                    <li><button name="category" value="Supermarket" type="submit" style="background-color: rgba(206, 74, 74, 0.959);"  class="category">Supermarket</button></li></ul></li>
+                <li class="menu"> <button onclick="document.getElementById('row4').style.display='block'" type="button" class="category">Clothing</button> 
+                  <ul id="row4" style="display: none; padding-left: 40px;">
+                    <li><button name="category" value="Shoes" type="submit" style="background-color: rgba(206, 74, 74, 0.959);"  class="category">Shoes</button></li>
+                    <li><button name="category" value="TShirt" type="submit" style="background-color: rgba(206, 74, 74, 0.959);"  class="category">TShirt</button></li>
+                    <li><button name="category" value="Jacket" type="submit" style="background-color: rgba(206, 74, 74, 0.959);"  class="category">Jacket</button></li></ul></li>
+                <li class="menu"> <button onclick="document.getElementById('row5').style.display='block'" type="button" class="category">Stationary</button> 
+                  <ul id="row5" style="display: none; padding-left: 40px;">
+                    <li><button name="category" value="Book" type="submit" style="background-color: rgba(206, 74, 74, 0.959);"  class="category">Book</button></li>
+                    <li><button name="category" value="Pencil" type="submit" style="background-color: rgba(206, 74, 74, 0.959);"  class="category">Pencil</button></li></ul></li>
+            </ul>
+          </form>
+          </div>
+            <!-- Categories End-->
+        
+        {% block content %}  {% endblock %}
+    </body>
+</html>

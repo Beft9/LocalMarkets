@@ -1,0 +1,93 @@
+{% extends "layout.html"  %}
+{% block title %} {{username}} {% endblock  %}
+
+
+{% block style %} 
+<style>
+    .dropbtn {
+    background-color: rgb(91, 132, 185);
+    color:  rgb(27, 65, 114);
+    font-size: 25px;
+    padding: 10px 20px;
+      border: none;
+    }
+    
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f1f1f1;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+      text-align: left;
+    }
+    
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    
+    .dropdown-content a:hover {background-color: #ddd;}
+    
+    .dropdown:hover .dropdown-content {display: block;}
+    
+    .dropdown:hover .dropbtn {background-color: rgb(107, 140, 184);}
+    </style>
+{% endblock %}
+
+
+{% block login %}
+<a class="sites-routers" href="{{ url_for('turning_signed',username=username ) }}">Home</a>
+<a class="sites-routers" href="{{ url_for('cart_page',username=username )}}">Cart</a>
+<div class="dropdown">
+    <button class="dropbtn">{{username}}</button>
+    <div class="dropdown-content">
+      <a href="{{ url_for('person_page',username=username ) }}">Profile</a>
+      <a href="/">Log out</a>
+      <a href="{{ url_for('company_page',username=username) }}">Company</a>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+<div style="width: 55%; float: left;">
+{% for product in product_list %}
+<a href="{{url_for('product_page', username=username, product_id=product.id)}}">
+<div class="card" style="width: 250px; text-align: center; margin: 10px; float: left;">
+  <img src="{{url_for('static', filename='{}.jpg'.format(product.category))}}" alt="{{product.name}}" style="width:300px; height: 200px; float: left; background: url(https://i.imgur.com/yZfkl8E.jpg) no-repeat scroll 0 0;"/>
+  <h1 class="subtitle is-1" style="margin: 0px; padding: 0px; font-size: 30px;">{{product.name}}</h1>
+  <p class="price">{{product.price}} TRY</p>
+  <p>{{product.brand}}</p>
+  <p>{{product.model}}</p>
+  <p style="margin-bottom: 15px ;">Quantity: {{product.quantity}}</p>
+</div>
+</a>
+
+{% endfor %}
+</div>
+<div style="background-color:rgba(85, 85, 85, 0.082); width: 20%; float: left; padding: 10px 30px; margin-top: 10px;">
+  <form action="{{ url_for('filter', username=username) }}" method="post">
+    <input type="checkbox" name="local" value="local">
+    <label for="local"> Only Local Markets</label><br><br><br>
+    <h1>Brand</h1>
+    {% for brand in brands %}
+    <input type="checkbox" name="{{brand}}" value="{{brand}}" checked>
+    <label for="{{brand}}">{{brand}}</label><br>
+    {% endfor %}<br><br><br><br>
+    <h1>Model</h1>
+    {% for model in models %}
+    <input type="checkbox" name="{{model}}" value="{{model}}" checked>
+    <label for="{{model}}"> {{model}}</label><br>
+    {% endfor %}<br><br><br><br>
+    <input class="button" type="submit" value="Submit">
+  </form>
+</div>
+
+{% endblock %}
